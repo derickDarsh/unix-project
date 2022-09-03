@@ -1,0 +1,8 @@
+2812109007201:RR nagar:savings:Darshan S A:23/07/2000:DJHAF321:1845 2003 1985:student:null:Indian:Shivanand A:general:Daneshwari nagar,3rd cross,haveri.:9740265622:Darsh:2307:9100
+2812109007202:Vijay Nagar:savings:Bhoomika:04/04/2001:DJHAF412:1845 2001 2398:student:null:Indian:Muthuraj uncle:GEneral:vijay nagar 3rd cross 2nd main, benagaluru:6868792134:Bhoom:0404:50000
+2812109007203:Utarhalli:Current:Ganesh S:05-09-1999:DGODJF987:1786 0000 2983:Doing Good:1000000:Indian:Paramathma:General:Heaven, above the sky.:1238980221:ganu:7777:5300
+2812109007204:Majestic:Current:Rita Ambani:09-09-1987:JJJJH345:8663 9978 2384:Employee:800000:Indian:Mukesh Ambani:Bussiness:Ring Road,3rd cross,2nd Main,Majestic.:6783876211:rita:8080:4000
+2812109007205:MG road:Savings:Shamprasad S:23-09-2001:JKLU764I8:7329 2133 2321:Student:70000:Indian:Suresh H:student:Bangarappa Nagara, MG road, Karnataka,India.:7949378943:sham:7878:20000
+2812109007206:RR nagar:Current:Sajid M:23-10-1998:DJFDK21938:1276 2134 1231:Shop keeper:800000:Indian:Mohammad Faisal:Defence:Aditya Layout,#123, RR nagar,Bengaluru,Karnataka.:67436325332:sajid:5656:9500
+2812109007207:RR nagar:Current:Amit C:10-10-2000:XY783621:83724823632:Shop Keeper:200000:Indian:Lakshman H:General:Gat Boys Hostel, RR nagar, Bengaluru.:72846292743:amit:9898:10000
+2812109007208:RR NGR:Savings:GUNA:9/7/2001:ABCD12345:ABCD32431:STUDENT:500000:INDIAN:hahaja:Student:KENGERI:9876565437:guna:abcd:100

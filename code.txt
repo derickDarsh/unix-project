@@ -1,0 +1,443 @@
+clear
+echo "================================================================================================"
+echo ":                                  ＢＡＮＫＩＮＧ ＳＹＳＴＥＭ                                 :"
+echo "================================================================================================"    
+echo "                                                                                DATE: `date "+%d/%m/%Y"`"
+echo "  Log In (Enter log to log in)                     Sign UP(Enter New to Create new bank Account)"
+tput cup 5 38
+read log
+echo "================================================================================================"
+
+if [ $log = "new" -o $log = "NEW" -o $log = "New" ]
+then 
+ echo new
+ echo "        HELLO! WE ARE SO HAPPY THAT YOU CHOSE US TO LEAN UPON WHILE BALANCING YOUR FINANCES!"
+ echo
+ echo "                            WELCOME TO THE WORLD OF UNIX BANK"
+
+ echo
+
+ echo BRANCH :
+ read branch
+ echo
+
+ echo "   ACCOUNTS :"
+ echo "1. SAVINGS ACCOUNT(Enter "Savings" to choose SAVINGS ACCOUNT)"
+ echo "2. CURRENT ACCOUNT(Enter "Current" to choose CURRENT ACCOUNT)"
+ echo
+
+ echo -n "CHOOSE YOUR ACCOUNT TYPE : "
+ read deposit_acc
+ echo
+
+ if [ "$deposit_acc" = "Savings" ]
+ then
+  echo "==============================  ＳＡＶＩＮＧＳ ＡＣＣＯＵＮＴ ======================================"
+  echo
+ 
+ elif [ "$deposit_acc" = "Current" ]
+ then 
+  echo "==============================  ＣＵＲＲＥＮＴ ＡＣＣＯＵＮＴ ======================================="
+  echo
+ else
+  echo " INAPROPRIATE INPUT"
+ fi
+  
+ while [ "$deposit_acc" != "Savings" -a "$deposit_acc" != "Current" ]
+ do 
+  
+ echo "   ACCOUNTS :"
+ echo "1. SAVINGS ACCOUNT(Enter "Savings" to choose SAVINGS ACCOUNT)"
+ echo "2. CURRENT ACCOUNT(Enter "Current" to choose CURRENT ACCOUNT)"
+ echo
+
+ echo -n "CHOOSE YOUR ACCOUNT TYPE : "
+ read deposit_acc
+ echo
+
+ if [ "$deposit_acc" = "Savings" ]
+ then
+  echo "==============================  ＳＡＶＩＮＧＳ ＡＣＣＯＵＮＴ =================================================="
+  echo
+ elif [ "$deposit_acc" = "Current" ]
+ then 
+  echo "==============================  ＣＵＲＲＥＮＴ ＡＣＣＯＵＮＴ =================================================="
+  echo
+ else
+  echo " INAPROPRIATE INPUT"
+ fi
+ done
+ 
+  echo -n "   NAME : "
+  read name
+  echo
+
+  echo -n "   DATE OF BIRTH : "
+  read dob
+  echo
+
+  echo -n  "   PAN CARD no.: "
+  read PanCardNo
+  echo "  \* UPLOAD A COPY OF PAN CARD \*"
+  echo
+
+  echo -n "   AADHAR CARD no.: "
+  read aadhar
+  echo "  \* UPLOAD A COPY OF AADHAR CARD\*"
+  echo
+
+  echo -n  "   OCCUPATION : "
+  read occupation
+  echo
+
+  echo -n  "   ANNUAL INCOME : "
+  read income
+  echo
+
+  echo -n "   NATIONALITY : "
+  read nationality
+  echo
+
+  echo -n "   FATHER'S/HUSBAND'S NAME : "
+  read f_d_name
+  echo
+
+  echo "   CATEGORY :"
+  echo
+  echo "   DEFENCE    AGRICULTURE   BUSSINESS   GENERAL   STUDENT  "
+  echo -n "   CHOOSE YOUR CATEGORY(TO SELECT YOUR CATEGORY, PLEASE TYPE IN "Defence" or "Agriculture" or "Business" or "General" or "Student") : "
+  read category
+  echo
+
+  if [ "$category" != "Defence" -a  "$category" != "Agriculture" -a "$category" != "Business" -a "$category" != "General" -a "$category" != "Student" ]
+  then
+  echo "   INAPPROPRIATE OPTION. PLEASE TYPE IN WITH THE CORRECT FORMAT AS SHOWN BELOW"
+  echo
+  fi
+
+
+  while [ "$category" != "Defence" -a  "$category" != "Agriculture" -a "$category" != "Business" -a "$category" != "General" -a "$category" != "Student" ]
+  do 
+  echo "   CATEGORY :"
+  echo
+  echo "   DEFENCE    AGRICULTURE   BUSSINESS   GENERAL   STUDENT  "
+  echo -n "   CHOOSE YOUR CATEGORY (TO SELECT YOUR CATEGORY, PLEASE TYPE IN "Defence" or "Agriculture" or "Business" or "General" or "Student" : "
+  read category
+  echo
+
+  if [ "$category" != "Defence" -a  "$category" != "Agriculture" -a "$category" != "Business" -a "$category" != "General" -a "$category" != "Student" ]
+  then
+  echo "   INAPPROPRIATE OPTION. PLEASE TYPE IN WITH THE CORRECT FORMAT AS SHOWN BELOW"
+  echo
+  fi
+
+  done
+
+
+  echo -n "   ADDRESS : "
+  read add
+  echo
+
+  echo -n "   TELEPHONE NO. : "
+  read teleno
+  echo
+
+  echo -n "   Enter the Amount you want to Deposit?(minimum Rs.1000) : "
+  read amt
+  while [ $amt -lt 1000 ]
+  do 
+   echo "   Minimum of 1000 should be deposited to make a new account"
+   echo -n "   Amount :"
+   read amt
+  done 
+
+  echo " "
+  if [ "$category" != "STUDENT" -o "$category" = "student" ]
+  then
+   echo "============================= ＩＮＴＥＲＮＥＴ ＢＡＮＫＩＮＧ==================================="
+   echo
+
+   echo "    Please enter the username that you would prefer to use for internet banking : "
+   read user_name
+   echo
+
+   echo "   Enter the password : "
+   read password
+   echo
+
+   echo "   Confirm password : "
+   read confirm_pass
+   echo
+
+   if [ "$password" != "$confirm_pass" ]
+   then
+    while [ "$password" != "$confirm_pass" ]
+    do
+     echo "            PASSWORD AND CONFIRM PASSWORD DID NOT MATCH!"
+     echo "                       RE-ENTER PASSWORD"
+     echo
+      echo "   Enter the password : "
+     read password
+     echo
+
+     echo "   Confirm password : "
+     read confirm_pass
+     echo
+    done
+   fi
+
+  echo
+  echo "                 PASSWORD SET SUCCESSFULLY!"
+  echo "          YOUR ACCOUNT HAS BEEN SUCCESSFULLY CREATED!"
+ fi
+
+ accno=`tail -1 Bank_database | cut -d ":" -f1` 
+ accno=`expr $accno + 1`
+ #$accno >> Bank_database
+
+ #echo "For now lets assume acc no to be 359621001. Just to see if it gets appended."
+ #echo -n "359621001" >> Bank_database
+ echo $accno:$branch:$deposit_acc:$name:$dob:$PanCardNo:$aadhar:$occupation:$income:$nationality:$f_d_name:$category:$add:$teleno:$user_name:$password:$amt >> Bank_database
+
+
+elif [ $log = "log" -o $log = "LOG" -o $log = "Log" ]
+then
+  while true
+  do
+  echo -n "                                Name:"
+  read user
+  echo -n "                                Password:"
+  read pw
+  echo " "
+ 
+  count=`grep -w $user:$pw Bank_database | wc -l` 
+  if [ $count -eq 1 ]
+  then
+   echo "                             Logged In Successsfully"
+   echo "================================================================================================"
+   echo " "
+   echo "    ACCOUNT DETAILS:"
+   echo " "
+  
+   acc=`grep -w "$user:$pw" Bank_database | cut -d ":" -f1` 
+   echo "    ACCOUNT NUMBER: $acc"
+   name=`grep -w "$user:$pw" Bank_database | cut -d ":" -f4` 
+   echo "    NAME: $name"
+   dob=`grep -w "$user:$pw" Bank_database | cut -d ":" -f5`
+   echo "    D.O.B: $dob"
+   acctyp=`grep -w "$user:$pw" Bank_database | cut -d ":" -f3`
+   echo "    Account Type: $acctyp"
+   add=`grep -w "$user:$pw" Bank_database | cut -d ":" -f13`
+   echo "    Address: $add"
+   num=`grep -w "$user:$pw" Bank_database | cut -d ":" -f14`
+   echo "    Contact number: $num"
+
+   echo " "
+   while true
+   do
+   echo " "
+   echo "   What Operation Do You Wish To Perform?"
+   echo "    1] Deposit"
+   echo "    2] Withdraw"
+   echo "    3] Balance Enquiry"
+   echo "    4] Transaction Histroy" 
+   echo "    5] Others"
+   echo "    6] QUIT"
+   read ch
+
+   case $ch in
+        1) echo "==================================  ＤＥＰＯＳＩＴ ============================================ "
+           echo " "
+                  echo -n "      Enter the Amount you want to Deposit: Rs."
+                  read damt 
+
+                  acc=`grep -w "$user:$pw" Bank_database | cut -d ":" -f1`
+                  branch=`grep -w "$user:$pw" Bank_database | cut -d ":" -f2`
+                  accty=`grep -w "$user:$pw" Bank_database | cut -d ":" -f3`
+                  name=`grep -w "$user:$pw" Bank_database | cut -d ":" -f4`
+                  dob=`grep -w "$user:$pw" Bank_database | cut -d ":" -f5`
+                  pan=`grep -w "$user:$pw" Bank_database | cut -d ":" -f6`
+                  adhr=`grep -w "$user:$pw" Bank_database | cut -d ":" -f7` 
+                  occ=`grep -w "$user:$pw" Bank_database | cut -d ":" -f8`
+                  income=`grep -w "$user:$pw" Bank_database | cut -d ":" -f9`
+                  nlty=`grep -w "$user:$pw" Bank_database | cut -d ":" -f10`
+                  fname=`grep -w "$user:$pw" Bank_database | cut -d ":" -f11`
+                  cat=`grep -w "$user:$pw" Bank_database | cut -d ":" -f12`
+                  add=`grep -w "$user:$pw" Bank_database | cut -d ":" -f13`
+                  num=`grep -w "$user:$pw" Bank_database | cut -d ":" -f14`
+                  usr=`grep -w "$user:$pw" Bank_database | cut -d ":" -f15`
+                  pass=`grep -w "$user:$pw" Bank_database | cut -d ":" -f16`
+                  bal=`grep -w "$user:$pw" Bank_database | cut -d ":" -f17`
+                  bal=`expr $bal + $damt` 
+                  
+                  sed -i "/$user:$pw/d" Bank_database  #for deletion and save the file. 
+                  
+                  echo $acc:$branch:$accty:$name:$dob:$pan:$adhr:$occ:$income:$nlty:$fname:$cat:$add:$num:$usr:$pass:$bal >> Bank_database 
+                  echo " " 
+
+                  sort -n Bank_database -o Bank_database
+ 
+                  bal_d=`grep -w "$user:$pw" Bank_database | cut -d ":" -f17`
+                  echo "      AMOUNT DEPOSITED SUCCESSFULLY !!!"
+                  echo "      BALANCE: $bal_d"
+                  echo " "
+                  echo "==============================================================================================="
+                  echo " "
+
+		  d=`date "+%d/%m/%Y"`
+                  echo $acc:$d: $damt Deposited >> trans_his;;
+
+                  
+        2) echo "======================================= ＷＩＴＨＤＲＡＷ ====================================== "
+                  echo " "
+                  echo -n "     Enter the Amount you want to Withdraw: Rs."
+                  read wamt
+                  bal=`grep -w "$user:$pw" Bank_database | cut -d ":" -f17`
+                  if [ $bal -lt $wamt ]
+                  then 
+                  echo "       INSUFFICIENT BALANCE!!"
+                  else
+           
+                  acc=`grep -w "$user:$pw" Bank_database | cut -d ":" -f1`
+                  branch=`grep -w "$user:$pw" Bank_database | cut -d ":" -f2`
+                  accty=`grep -w "$user:$pw" Bank_database | cut -d ":" -f3`
+                  name=`grep -w "$user:$pw" Bank_database | cut -d ":" -f4`
+                  dob=`grep -w "$user:$pw" Bank_database | cut -d ":" -f5`
+                  pan=`grep -w "$user:$pw" Bank_database | cut -d ":" -f6`
+                  adhr=`grep -w "$user:$pw" Bank_database | cut -d ":" -f7`
+                  occ=`grep -w "$user:$pw" Bank_database | cut -d ":" -f8`
+                  income=`grep -w "$user:$pw" Bank_database | cut -d ":" -f9`
+                  nlty=`grep -w "$user:$pw" Bank_database | cut -d ":" -f10`
+                  fname=`grep -w "$user:$pw" Bank_database | cut -d ":" -f11`
+                  cat=`grep -w "$user:$pw" Bank_database | cut -d ":" -f12`
+                  add=`grep -w "$user:$pw" Bank_database | cut -d ":" -f13`
+                  num=`grep -w "$user:$pw" Bank_database | cut -d ":" -f14`
+                  usr=`grep -w "$user:$pw" Bank_database | cut -d ":" -f15`
+                  pass=`grep -w "$user:$pw" Bank_database | cut -d ":" -f16`
+                  bal=`expr $bal - $wamt`
+                  echo " "
+ 
+                  sed -i "/$user:$pw/d" Bank_database   
+
+                  echo $acc:$branch:$accty:$name:$dob:$pan:$adhr:$occ:$income:$nlty:$fname:$cat:$add:$num:$usr:$pass:$bal >> Bank_database
+
+                  bal_w=`grep -w "$user:$pw" Bank_database | cut -d ":" -f17`
+                  echo "     AMOUNT WITHDRAWN SUCCESSFULLY !!!"
+                  echo "     BALANCE: $bal_w"
+
+                  sort -n Bank_database -o Bank_database
+
+                  fi
+                  echo " "
+                  echo "==============================================================================================="
+
+		  d=`date "+%d/%m/%Y"`
+                  echo $acc:$d: $wamt Withdrawn >> trans_his;;
+                      
+        3) echo "============================= ＢＡＬＡＮＣＥ ＥＮＱＵＩＲＹ ==================================="
+                  echo " "
+                  echo "    ACCOUNT NUMBER: $acc"
+                  echo "    NAME: $name"
+                  bal=`grep -w "$user:$pw" Bank_database | cut -d ":" -f17`
+                  echo "    AVAILABLE BALANCE: $bal" 
+                  echo " "            
+                  echo "===============================================================================================";;
+
+        4) echo "=============================  ＴＲＡＮＳＡＣＴＩＯＮ ＨＩＳＴＯＲＹ =========================="
+	          echo " "			   
+                  echo "    ACCOUNT NUMBER: $acc"	          
+		  echo " "
+                  echo "DATE         AMOUNT"
+                  echo " "
+		  trans=`grep -w "$acc" trans_his | cut -d ":" -f2,3`
+                  echo "$trans"
+		  echo " "
+	          bal=`grep -w "$user:$pw" Bank_database | cut -d ":" -f17`
+		  echo "    AVAILABLE BALANCE : $bal"		
+		  echo " "
+		  echo "===============================================================================================";;
+
+
+        5) echo "     1] Change Address"
+           echo "     2] Change Phone Number"
+           read ch1
+           case $ch1 in
+                1) echo " " 
+                        echo "   Enter New Address : "
+                        read nadd
+                        
+                        acc=`grep -w "$user:$pw" Bank_database | cut -d ":" -f1`
+                        branch=`grep -w "$user:$pw" Bank_database | cut -d ":" -f2`
+                        accty=`grep -w "$user:$pw" Bank_database | cut -d ":" -f3`
+                        name=`grep -w "$user:$pw" Bank_database | cut -d ":" -f4`
+                        dob=`grep -w "$user:$pw" Bank_database | cut -d ":" -f5`
+                        pan=`grep -w "$user:$pw" Bank_database | cut -d ":" -f6`
+                        adhr=`grep -w "$user:$pw" Bank_database | cut -d ":" -f7`
+                        occ=`grep -w "$user:$pw" Bank_database | cut -d ":" -f8`
+                        income=`grep -w "$user:$pw" Bank_database | cut -d ":" -f9`
+                        nlty=`grep -w "$user:$pw" Bank_database | cut -d ":" -f10`
+                        fname=`grep -w "$user:$pw" Bank_database | cut -d ":" -f11`
+                        cat=`grep -w "$user:$pw" Bank_database | cut -d ":" -f12`
+                        num=`grep -w "$user:$pw" Bank_database | cut -d ":" -f14`
+                        usr=`grep -w "$user:$pw" Bank_database | cut -d ":" -f15`
+                        pass=`grep -w "$user:$pw" Bank_database | cut -d ":" -f16`
+                        bal=`grep -w "$user:$pw" Bank_database | cut -d ":" -f17`
+                       
+                        sed -i "/$user:$pw/d" Bank_database
+
+                        echo $acc:$branch:$accty:$name:$dob:$pan:$adhr:$occ:$income:$nlty:$fname:$cat:$nadd:$num:$usr:$pass:$bal >> Bank_database
+
+                        sort -n Bank_database -o Bank_database
+
+                        echo " "
+                        echo "   New Address has been Updated!"
+                        echo "===============================================================================================";;
+                         
+                        
+                2) echo " " 
+                        echo "   Enter New Mobile Number : "
+                        read nnum
+                        
+                         acc=`grep -w "$user:$pw" Bank_database | cut -d ":" -f1`
+                         branch=`grep -w "$user:$pw" Bank_database | cut -d ":" -f2`
+                         accty=`grep -w "$user:$pw" Bank_database | cut -d ":" -f3`
+                         name=`grep -w "$user:$pw" Bank_database | cut -d ":" -f4`
+                         dob=`grep -w "$user:$pw" Bank_database | cut -d ":" -f5`
+                         pan=`grep -w "$user:$pw" Bank_database | cut -d ":" -f6`
+                         adhr=`grep -w "$user:$pw" Bank_database | cut -d ":" -f7`
+                         occ=`grep -w "$user:$pw" Bank_database | cut -d ":" -f8`
+                         income=`grep -w "$user:$pw" Bank_database | cut -d ":" -f9`
+                         nlty=`grep -w "$user:$pw" Bank_database | cut -d ":" -f10`
+                         fname=`grep -w "$user:$pw" Bank_database | cut -d ":" -f11`
+                         cat=`grep -w "$user:$pw" Bank_database | cut -d ":" -f12`
+                         add=`grep -w "$user:$pw" Bank_database | cut -d ":" -f13`
+                         usr=`grep -w "$user:$pw" Bank_database | cut -d ":" -f15`
+                         pass=`grep -w "$user:$pw" Bank_database | cut -d ":" -f16`
+                         bal=`grep -w "$user:$pw" Bank_database | cut -d ":" -f17`
+                  
+                         sed -i "/$user:$pw/d" Bank_database
+
+                         echo $acc:$branch:$accty:$name:$dob:$pan:$adhr:$occ:$income:$nlty:$fname:$cat:$add:$nnum:$usr:$pass:$bal >> Bank_database
+
+                         sort -n Bank_database -o Bank_database
+
+                         echo " " 
+                         echo "   New Number has been Upadated"
+                         echo "==================================================================================";;
+
+
+                        
+                *) echo Enter correct choice
+           esac;;
+         6) exit;;
+      *) echo Enter correct choice
+  esac
+  done
+  else
+    echo Invalid username or password
+    echo "============================================================================================="
+  fi
+  done
+else 
+ echo inapropriate option
+fi
